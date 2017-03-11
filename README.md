@@ -16,7 +16,7 @@ I have imported pictures from many cameras over the years into an external drive
 ### Use Case 1: Unload a single folder
 
 1. Right-mouse Folder A, which contains media files.
-2. Choose _**UnFolder**_ from the shortcut menu.
+2. Choose _**Unload Folder**_ from the shortcut menu.
 
     **Expected Results:**
 
@@ -26,7 +26,7 @@ I have imported pictures from many cameras over the years into an external drive
 ### Use Case 2: Unload a folder tree
 
 1. Right-mouse a folder containing media files.
-2. Choose _**UnFolder All**_ from the shortcut menu.
+2. Choose _**Unnload Folder Tree**_ from the shortcut menu.
 
     **Expected Results:**
 
