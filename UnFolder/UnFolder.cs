@@ -12,8 +12,7 @@ namespace UnFolder
     public class UnFolder
     {
         public void Unpack(IEnumerable<DirectoryInfo> folders, bool unpackSubfolders=false, bool whatIf=false)
-        { 
-        
+        {
             DirectoryInfo[] directoryInfos = folders as DirectoryInfo[] ?? folders.ToArray();
             if (!directoryInfos.Any())
             {
@@ -109,6 +108,9 @@ namespace UnFolder
 
         internal void DisplayError(string msg)
         {
+#if DEBUG
+            Debugger.Break();
+#endif
             ConsoleColor oldColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"\n{msg}\n");
