@@ -4,6 +4,7 @@
            Manufacturer="Boundless Synergy"
            UpgradeCode="6C4A524D-7805-4BF6-AC81-65A381A20000">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
+    <Property Id="MsiLogging" Value="v" />
     <Property Id="ALLUSERS" Secure="yes" Value="2"/>
     <Property Id="MSIINSTALLPERUSER" Secure="yes" Value="1" />
     <MajorUpgrade
@@ -27,7 +28,8 @@
          @="C:\Users\smerri\AppData\Local\Programs\Boundless Synergy\UnFolder\UnFolder.exe"
         -->
         <RegistryKey Root="HKCU"
-                     Key="Software\Classes\directory\background\shell\Unload Folder" ForceDeleteOnUninstall="yes">
+                     Key="Software\Classes\directory\background\shell\Unload Folder" 
+                     ForceDeleteOnUninstall="yes">
           <RegistryValue Type="string"
                          Value="Unload Folder"/>
           <RegistryKey Key="command">
@@ -36,7 +38,8 @@
           </RegistryKey>
         </RegistryKey>
         <RegistryKey Root="HKCU"
-                     Key="Software\Classes\directory\background\shell\Unload All Folders" ForceDeleteOnUninstall="yes">
+                     Key="Software\Classes\directory\background\shell\Unload All Folders" 
+                     ForceDeleteOnUninstall="yes">
           <RegistryValue Type="string"
                          Value="Unload All Folders"/>
           <RegistryKey Key="command">
@@ -53,11 +56,10 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="AppRootDirectory" Name="Boundless Synergy">
           <Directory Id="INSTALLFOLDER" Name="UnFolder" >
+            <!-- %localappdata%\Programs\Boundless Synergy\Unfolder\ -->
           </Directory>
         </Directory>
       </Directory>
     </Directory>
   </Fragment>
-
-
 </Wix>
