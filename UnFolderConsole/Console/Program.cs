@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static System.Console;
+using static System.Diagnostics.Debugger;
 
-namespace UnFolder
+namespace UnFolder.Console
 {
     public class Program
     {
@@ -13,43 +15,70 @@ namespace UnFolder
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            List<DirectoryInfo> folders = new List<DirectoryInfo>();      
+#if DEBUG
+            if (!IsAttached)
+            {
+                Launch();
+                Break();
+            }
+            
+#endif
+            List<DirectoryInfo> folders;      
             bool recursiveSwitch;
             bool whatIfSwitch;
 
-            if (InterpretArgs(args, folders, out recursiveSwitch, out whatIfSwitch))
+            if (InterpretArgs(args, out folders, out recursiveSwitch, out whatIfSwitch))
                 return;
 
             if (args.Any())
             {
-                UnFolder u = new UnFolder();
+                Unfolder u = new Unfolder();
+                u.UnfolderError += UOnUnfolderError;
+                u.UnfolderMessage += UOnUnfolderMessage;
                 u.Unpack(folders, recursiveSwitch, whatIfSwitch);
             }
             if (whatIfSwitch) PressAnyKey();
         }
+
+        private static void UOnUnfolderMessage(object sender, UnfolderMessageEventArgs unfolderMessageEventArgs)
+        {
+            string msg = unfolderMessageEventArgs.Message;
+            WriteLine($"\n{msg}\n");
+        }
+
+        private static void UOnUnfolderError(object sender, UnfolderMessageEventArgs unfolderMessageEventArgs)
+        {
+            string msg = unfolderMessageEventArgs.Message;
+            ConsoleColor oldColor = ForegroundColor;
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine($"\n{msg}\n");
+            ForegroundColor = oldColor;
+        }
+
 
         /// <summary>
         /// Usage
         /// </summary>
         public static void Usage()
         {
-            Console.WriteLine("Usage:\n\nUnFolder [/s] \"FolderName\"[, \"FolderName2\", ...]");
+            WriteLine("Usage:\n\nUnFolder [/s] \"FolderName\"[, \"FolderName2\", ...]");
             PressAnyKey();
         }
 
         #region Helpers
         private static void PressAnyKey()
         {
-            Console.WriteLine("Press any key to continue ...");
-            Console.ReadKey();
+            WriteLine("Press any key to continue ...");
+            ReadKey();
         }
 
         private static bool InterpretArgs(
             string[] args,
-            List<DirectoryInfo> folders,
+            out List<DirectoryInfo> folders,
             out bool recursiveSwitch,
             out bool whatIfSwitch)
         {
+            folders = new List<DirectoryInfo>();
             if (args == null)
             {
                 Usage();

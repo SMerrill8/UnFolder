@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnFolderTests
+namespace UnFolder.Tests
 {
     [TestClass]
     public class ProgramTests
@@ -11,7 +11,6 @@ namespace UnFolderTests
         [TestMethod]
         public void MainTest()
         {
-            UnFolder.UnFolder u = new UnFolder.UnFolder();
             string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string testFolder = $"{desktop}\\TestFolder";
             if (Directory.Exists($"{testFolder}\\F1\\F1.1"))
@@ -39,6 +38,7 @@ namespace UnFolderTests
             {
                 f1
             };
+            Unfolder u = new Unfolder();
             u.Unpack(folders,true);
         }
     }

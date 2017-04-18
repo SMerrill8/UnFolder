@@ -6,7 +6,7 @@
     <ProjectGuid>{89276722-6ABE-4DC8-B528-4846B29273B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnFolderTests</RootNamespace>
+    <RootNamespace>UnFolder</RootNamespace>
     <AssemblyName>UnFolderTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,13 +52,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ProgramTests.cs" />
+    <Compile Include="Tests\ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnFolder\UnFolder.csproj">
-      <Project>{BDA4B9C1-299E-4790-806E-50F1EE1537E9}</Project>
-      <Name>UnFolder</Name>
+    <ProjectReference Include="..\UnfolderForms\Forms.csproj">
+      <Project>{32c82134-90de-40f2-b4fe-1d0f19dcfa42}</Project>
+      <Name>Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
